@@ -1,6 +1,6 @@
 <template>
   <HelloWorld />
-  <prods />
+  <Prods />
 </template>
 
 <script setup>
