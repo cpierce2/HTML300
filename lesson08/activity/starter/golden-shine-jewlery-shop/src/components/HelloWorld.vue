@@ -5,7 +5,7 @@
     <v-responsive>
       <AppBar />
       <Products />
-      <router-view />
+      
       <footerTemplate />
     </v-responsive>
   </v-container>
