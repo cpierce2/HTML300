@@ -1,7 +1,11 @@
 <template>
-  <HelloWorld />
+  <app-bar />
+  <home-view />
+  <footer-template />
 </template>
 
 <script setup>
-  import HelloWorld from '@/components/HelloWorld.vue'
+  import AppBar from '@/layouts/default/AppBar.vue';
+  import homeView from '@/components/HomeView.vue'
+  import FooterTemplate from '@/layouts/default/FooterTemplate.vue';
 </script>

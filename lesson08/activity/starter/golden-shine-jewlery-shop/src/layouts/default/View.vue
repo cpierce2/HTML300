@@ -1,3 +1,5 @@
+<!-- LEAVE ALONE -->
+
 <template>
   <v-main>
     <router-view />
@@ -5,5 +7,6 @@
 </template>
 
 <script setup>
+import Products from '@/views/Products.vue';
   //
 </script>

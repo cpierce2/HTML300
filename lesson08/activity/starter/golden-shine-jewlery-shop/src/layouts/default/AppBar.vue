@@ -3,53 +3,52 @@
     <v-toolbar
       dark
       prominent
-      image="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
+      image="@/assets/dark-gold-hand.jpg"
     >
+
       <div class="d-flex justify-space-around">
         <v-menu transition="scale-transition">
           <template v-slot:activator="{ props }">
-            <v-btn
-              color="primary"
-              v-bind="props"
-            >
-            <v-app-bar-nav-icon />
-            </v-btn>
+            <v-btn v-bind="props" icon='mdi-menu'></v-btn>
           </template>
 
           <v-list>
-            <v-list-item
-              v-for="(item, i) in items"
-              :key="i"
-              :href='item.link'
+            <v-list-item v-for="page in pages"
+            :key="page"
+            :href='page.link'
             >
-              <v-list-item-title>{{ item.title }}</v-list-item-title>
+              <v-list-item-title>{{ page.name }}</v-list-item-title>
             </v-list-item>
           </v-list>
-        </v-menu> 
+        </v-menu>
       </div>
 
-      <v-toolbar-title>Golden Shine Jewlery Shop</v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-btn icon>
-        <v-icon>mdi-export</v-icon>
-      </v-btn>
+      <v-toolbar-title class='text-center'>
+        Golden Shine Jewlery Shop
+      </v-toolbar-title>
+
+      
+      <v-btn href='HomeView' icon='mdi-home' />
+      <v-btn icon='mdi-share-variant' />
+
     </v-toolbar>
-  </div>
+  </div> 
 </template>
 
 <script>
-import Home from '@/views/Home.vue';
 import Products from '@/views/Products.vue';
-
+import HomeView from '@/components/HomeView.vue';
   export default {
     data: () => ({
-      items: [
-        { title: 'Home', link: '' },
-        { title: 'Products', link: '@/views/Products.vue' },
-        { title: 'Order', link: './views/Order.vue' },
-        { title: 'About', link: '@/About' },
-        { title: 'Contact', link: '@/views/Contact.vue' },
+      pages: [
+        { name: 'Products', link: '@/views/Products.vue' },
+        { name: 'Order', link: './views/Order.vue' },
+        { name: 'About', link: '@/About' },
+        { name: 'Contact', link: '@/views/Contact.vue' },
       ],
     }),
+    components: {
+      HomeView
+    }
   }
 </script>
