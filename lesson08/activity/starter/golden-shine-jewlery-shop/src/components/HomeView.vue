@@ -12,30 +12,22 @@
     </v-tabs>
 
     <v-card-text>
-      <v-window>
-        <v-window-item>
-          <Home />
-        </v-window-item>
-
-        <!--<v-window-item>
-          <Products />
+      <v-window v-model="tab">
+        <v-window-item value="one">
+          <landing />
         </v-window-item>
 
         <v-window-item>
-          <Order />
+          <products />
         </v-window-item>
 
         <v-window-item>
-          <Contact />
+          Three
         </v-window-item>
 
         <v-window-item>
-          <About />
+          <contact />
         </v-window-item>
-
-        <v-window-item>
-          <Review />
-        </v-window-item>-->
       </v-window>
     </v-card-text>
   </v-card>
@@ -44,33 +36,30 @@
 <!-- script sources -->
 <script>
   // imports //
-  import About from '@/views/About.vue';
-  import Contact from '@/views/Contact.vue';
-  import Home from '@/views/Home.vue';
-  import Order from '@/views/Order.vue';
-  import Products from '@/views/Products.vue';
-  import Review from '@/views/Review.vue';
-  
+  import about from '@/views/About.vue'
+  import products from '@/views/Products.vue';
+  import contact from '@/views/Contact.vue';
+  import landing from '@/views/landing.vue'
 
   export default {
       data: () => ({
         tab: null,
         pages: [
-          {tab: 'Home'},
-          {tab: 'Products'},
-          {tab: 'Order'},
-          {tab: 'Contact'},
-          {tab: 'About'},
-          {tab: 'Reviews'}
+          {tab: 'Home', href: '@/views/Landing.vue'},
+          {tab: 'Products', href: '@/views/Products.vue'},
+          {tab: 'Order', href: '@/views/Order.vue'},
+          {tab: 'Contact', href: '@/views/Contact.vue'},
+          {tab: 'About', href: '@/views/About.vue'},
+          {tab: 'Reviews', href: '@/views/Review.vue'},
         ]
       }),
       components: {
-        Home,
-        Products,
-        Order,
-        Contact,
-        About,
-        Review
-      },
+        products,
+        contact,
+        landing,
+        about,
+        contact,
+        reviews
+      }
     }
 </script>
