@@ -1,12 +1,8 @@
-<!-- LEAVE ALONE -->
-
 <template>
-  <v-main>
-    <router-view />
-  </v-main>
+  <!-- the v-main tag was here -->
+  <router-view />
 </template>
 
 <script setup>
-import Products from '@/views/Products.vue';
-  //
+  // 
 </script>

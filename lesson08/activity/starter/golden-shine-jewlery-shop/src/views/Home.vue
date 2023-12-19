@@ -1,11 +1,10 @@
+<!-- template for the home.vue file -->
 <template>
-  <app-bar />
+  <!-- displays content from the HomeView file in components -->
   <home-view />
-  <footer-template />
 </template>
 
 <script setup>
-  import AppBar from '@/layouts/default/AppBar.vue';
+  // imports the homeview from the components folder
   import homeView from '@/components/HomeView.vue'
-  import FooterTemplate from '@/layouts/default/FooterTemplate.vue';
 </script>
