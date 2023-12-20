@@ -1,4 +1,5 @@
 <template>
+  <!-- displays shopping cart vue file -->
   <ShoppingCart /> 
 </template>
 

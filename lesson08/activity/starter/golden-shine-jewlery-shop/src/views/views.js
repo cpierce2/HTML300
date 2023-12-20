@@ -1,1 +1,1 @@
-// intentionally left blank for future use
+// intentionally left blank for possible future use

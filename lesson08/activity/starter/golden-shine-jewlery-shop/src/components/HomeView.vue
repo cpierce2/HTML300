@@ -2,37 +2,47 @@
 <template>
   <!-- creates the card that holds the tabs and pages -->
   <v-card>
+    <!-- nested card -->
     <v-card>
+      <!-- toolbar -->
       <v-toolbar>
+        <!-- menu for toolbar -->
         <v-menu open-on-hover>
+          <!-- slot for buttons -->
           <template v-slot:activator="{ props }">
+            <!-- icon button -->
             <v-btn 
             icon='mdi-account'
             v-bind='props' />
           </template>
             
+          <!-- creates list -->
           <v-list>
+            <!-- list item -->
             <v-list-item>
+              <!-- card -->
               <v-card
                 class="mx-auto"
                 elevation="1"
                 max-width="500">
 
+                <!-- card title -->
                 <v-card-title class="py-5 font-weight-black">Golden Shine Log In</v-card-title>
-
+                <!-- card text -->
                 <v-card-text>
                   This login section is intentionally not operational.
                 </v-card-text>
-
+                <!-- card text -->
                 <v-card-text>
+                  <!-- username -->
                   <div class="text-subtitle-2 font-weight-black mb-1">Enter Username</div>
-
+                  <!--  user email text field -->
                   <v-text-field
                     label="Username@email.com"
                     single-line
                     variant="outlined"
                   />
-
+                  <!-- log in button -->
                   <v-btn
                     :disabled="loading"
                     :loading="loading"
@@ -45,6 +55,7 @@
                     Log In
                   </v-btn>
 
+                  <!-- button to cancel operation -->
                   <v-btn
                     block
                     class="text-none"
@@ -59,9 +70,12 @@
           </v-list>
         </v-menu>
 
+        <!-- spacer -->
         <v-spacer />
 
+        <!-- card text -->
         <v-card-text>
+          <!-- text field -->
           <v-text-field
             :loading="loading"
             density="compact"
@@ -73,43 +87,65 @@
             @click:append-inner="onClick" 
           />
         </v-card-text>
-        <!-- creates space horizontally-->
+
+        <!-- spacer -->
         <v-spacer />
 
+        <!-- dialog window -->
         <v-dialog>
+          <!-- slot for icon -->
           <template v-slot:activator="{ props }">
+            <!-- icon button -->
             <v-btn v-bind="props" icon='mdi-cart-variant' />
           </template>
 
+          <!-- slot to append vue page views -->
           <template v-slot:default="{ isActive }">
+            <!-- creates the card that displays the content -->
             <v-card>
+              <!-- card text -->
               <v-card-text>
+                <!-- imported cart -->
                 <cart />
               </v-card-text>
 
+              <!-- divider -->
               <v-divider />
+
+              <!-- creates card actions -->
               <v-card-actions>
+                <!-- spacer -->
                 <v-spacer />
+                <!-- button to close dialog window -->
                 <v-btn icon='mdi-close' @click='isActive.value = false' />
               </v-card-actions>
             </v-card>
           </template>
         </v-dialog>
 
+        <!-- icon button -->
         <v-btn icon='mdi-share' variant='text' @click='snackbar = true' />
       
+        <!-- creates snackbar window, similar to dialog -->
         <v-snackbar
           v-model="snackbar"
           location="center">
           This is left intentionally blank to demonstrate the share function.
+          
+          <!-- slot template -->
           <template v-slot:actions>
+            <!-- icon button to close snackbar window -->
             <v-btn icon='mdi-close' @click="onClick" />
           </template>
         </v-snackbar>
 
+        <!-- template -->
         <template v-slot:extension>
+          <!-- grid -->
           <v-row>
+            <!-- column in grid -->
             <v-col>
+              <!-- dynamically creates tabs -->
               <v-tabs
                 v-model="tab"
                 align-tabs='center'>
@@ -120,39 +156,48 @@
         </template>
       </v-toolbar>
 
+      <!-- window to show pages (content) -->
       <v-window v-model="tab">
+        <!-- dynamically creates window items -->
         <v-window-item v-for="item in items"
           :key="item"
           :value="item" >
         </v-window-item>
       </v-window>
     </v-card>
+
     <!-- gives text -->
     <v-card-text>
       <!-- creates window to show tab content -->
       <v-window v-model='tab'>
         <!-- tabs to the landing (or home) page -->
         <v-window-item>
+          <!-- landing vue -->
           <landing />
         </v-window-item>
         <!-- tabs to the shop page -->
         <v-window-item>
+          <!-- shop vue -->
           <shop />
         </v-window-item>
         <!-- tabs to the personalize page -->
         <v-window-item>
+          <!-- personalize vue -->
           <personalize />
         </v-window-item>
         <!-- tabs to the contact page -->
         <v-window-item>
+          <!-- contact vue -->
           <contact />
         </v-window-item>
         <!-- tabs to the discover page -->
         <v-window-item>
+          <!-- discover vue -->
           <discover />
         </v-window-item>
         <!-- tabs to the reviews page -->
         <v-window-item>
+          <!-- reviews vue -->
           <reviews/>
         </v-window-item>
       </v-window>
@@ -160,7 +205,6 @@
   </v-card>
 </template>
 
-<!-- script sources -->
 <script>
   // vue imports //
   import discover from '@/views/Discover.vue'
@@ -223,69 +267,4 @@
       shoppingCart
     },
   }
-
-
-/*
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <v-layout ref="app" class="rounded rounded-md">
-    <v-app-bar color="grey-lighten-2" name="app-bar">
-      <child v-slot="{ print }">
-        <v-btn class="mx-auto" @click="print('app-bar')">Get data</v-btn>
-      </child>
-    </v-app-bar>
-
-    <v-main class="d-flex align-center justify-center" style="min-height: 300px;">
-      Main Content
-    </v-main>
-
-    <v-footer
-      app
-      name="footer"
-    >
-      <v-btn
-        class="mx-auto"
-        variant="text"
-        @click="print('footer')"
-      >
-        Get data
-      </v-btn>
-    </v-footer>
-  </v-layout>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-*/
-
-
-
-
-
-
-
 </script>

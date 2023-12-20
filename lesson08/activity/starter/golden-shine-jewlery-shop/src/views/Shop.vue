@@ -1,82 +1,105 @@
 <template>
-  <v-container fluid>
-  <!-- creates a row for the container -->
-  <v-row>
-    <!-- creates a card -->
-    <v-card v-for='prodCard in prodCards'
-      :key='prodCard.id'
-      elevation='0'
-      width='20rem'
-      class='mx-16 my-6'>
-      <!-- loops through the images for the cards -->
-      <v-img :src='prodCard.itemImage' height="275px" cover/>
-      <!-- displays card item through loop iteration -->
-      <v-card-title class='text-center' v-text='prodCard.itemName' />
-      <!-- provides actions for the cards with a button to drop down for more info -->
-      <v-card-actions>
-        <!-- creates "see more" expansion for the card -->
-        <v-expansion-panels>
-          <v-expansion-panel
-            :key='prodCard.id'
-            title='Details'
-            color='primary'
-            elevation='5'
-          >
-            <v-expansion-panel-text
-              v-text='prodCard.itemDescription' 
-              class='text-justify mx-5 my-2' 
-            />
-            <v-expansion-panel-text>
-              <v-table>
-                <tbody>
-                  <tr>
-                    <td>{{ prodCard.price }}</td>
-                    <td>${{ prodCard.itemPrice }}</td>
-                  </tr>
-                  <tr>
-                    <td>{{ prodCard.weight }}</td>
-                    <td>{{ prodCard.itemWeight }} Ounces</td>
-                  </tr>
-                  <tr>
-                    <td>{{ prodCard.karatage }}</td>
-                    <td>{{ prodCard.itemKarat }}k</td>
-                  </tr>
-                </tbody>
-              </v-table>
-            </v-expansion-panel-text>
+  <!-- creates container with the background color -->
+  <v-container fluid class='main-bg'>
+    <!-- creates a row for the container -->
+    <v-row>
+      <!-- creates a card -->
+      <v-card v-for='prodCard in prodCards'
+        :key='prodCard.id'
+        elevation='0'
+        width='20rem'
+        class='mx-16 my-6 main-bg'>
+        <!-- loops through the images for the cards -->
+        <v-img :src='prodCard.itemImage' height="275px" width='100%' cover/>
+        <!-- displays card item through loop iteration -->
+        <v-card-title class='text-center' v-text='prodCard.itemName' />
+        <!-- provides actions for the cards with a button to drop down for more info -->
+        <v-card-actions>
+          <!-- creates "see more" expansion panels for the card -->
+          <v-expansion-panels>
+            <!-- expansion panel template -->
+            <v-expansion-panel
+              :key='prodCard.id'
+              title='Details'
+              color='primary'
+              elevation='5'
+            >
+              <!-- text for the expansion panel -->
+              <v-expansion-panel-text
+                v-text='prodCard.itemDescription' 
+                class='text-justify mx-5 my-2' 
+              />
+              <!-- nested panel text for table content -->
+              <v-expansion-panel-text>
+                <!-- creates table -->
+                <v-table>
+                  <!-- table body, no header elements -->
+                  <tbody>
+                    <!-- first row -->
+                    <tr>
+                      <!-- displays price title and item price -->
+                      <td>{{ prodCard.price }}</td>
+                      <td>${{ prodCard.itemPrice }}</td>
+                    </tr>
+                    <!-- second row -->
+                    <tr>
+                      <!-- displays wieght title and item weight in ounces -->
+                      <td>{{ prodCard.weight }}</td>
+                      <td>{{ prodCard.itemWeight }} Ounces</td>
+                    </tr>
+                    <!-- third row -->
+                    <tr>
+                      <!-- displays karats title and item karats -->
+                      <td>{{ prodCard.karatage }}</td>
+                      <td>{{ prodCard.itemKarat }}k</td>
+                    </tr>
+                  </tbody>
+                </v-table>
+              </v-expansion-panel-text>
               
-            <v-expansion-panel-text>
-              <v-dialog>
-                <template v-slot:activator="{ props }">
-                  <v-btn 
-                    text='Add to Cart'
-                    v-bind='props'
-                    color='primary'
-                    variant='outlined'
-                    @click='dialog = !dialog'
-                  />
-                </template>
+              <!-- creates expansion text element for the add to cart button -->
+              <v-expansion-panel-text>
+                <!-- creates a success "added item to cart" dialog window -->
+                <v-dialog>
+                  <!-- template for the add to cart button -->
+                  <template v-slot:activator="{ props }">
+                    <!-- creates the button -->
+                    <v-btn 
+                      text='Add to Cart'
+                      v-bind='props'
+                      color='primary'
+                      variant='outlined'
+                      @click='dialog = !dialog'
+                    />
+                  </template>
 
-                <template v-slot:default="{ isActive }">
+                  <!-- template for the success dialog window -->
+                  <template v-slot:default="{ isActive }">
+                    <!--  -->
                     <v-fade-transition hide-on-leave>
+                      <!-- creates the card that holds the success message -->
                       <v-card
                         class="mx-auto text-center px-6"
                         max-width='500'
                         title="Success">
-
+                        <!-- creates a divider -->
                         <v-divider></v-divider>
-
+                        <!-- div parent -->
                         <div class="py-12 text-center">
+                          <!-- shows a circle with checkmark icon -->
                           <v-icon
                             class="mb-6"
                             color="success"
                             icon="mdi-check-circle-outline"
                             size="128" />
-
+                          <!-- displays "item added to cart" text -->
                           <div class="text-h4 font-weight-bold">Item Added to Cart</div>
                         </div>
+                        <!-- creates a divider -->
                         <v-divider />
+                        <!-- div parent element -->
                         <div class="pa-4 text-end">
+                          <!-- creates the close button -->
                           <v-btn
                             class="text-none"
                             color="medium-emphasis"
@@ -90,16 +113,15 @@
                         </div>
                       </v-card>
                     </v-fade-transition>
-                </template>
-              </v-dialog>
-            </v-expansion-panel-text>
-          </v-expansion-panel>
-        <!-- creates the actual action of the button with a chevron character -->
-        </v-expansion-panels>
-      </v-card-actions>
-    </v-card>
-  </v-row>
-</v-container>
+                  </template>
+                </v-dialog>
+              </v-expansion-panel-text>
+            </v-expansion-panel>
+          </v-expansion-panels>
+        </v-card-actions>
+      </v-card>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
@@ -160,7 +182,7 @@
         },
         {
           itemImage: Img4,
-          itemName: 'Earring and Neclace Set With Pearls',
+          itemName: 'Earring & Neclace Pearl Set',
           itemPrice: 210.39,
           itemDescription: 'This is filler content for the sake of taking up space',
           itemWeight: 9.8,

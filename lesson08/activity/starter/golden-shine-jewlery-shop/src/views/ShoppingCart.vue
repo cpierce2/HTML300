@@ -1,96 +1,151 @@
 <template>
+  <!-- creates a stepped form -->
   <v-stepper
     v-model='step'
-    :items="steps"
-  >
+    :items="steps">
+    <!-- template for the first part of the form -->
     <template v-slot:item.1>
+      <!-- title -->
       <h3 class="text-h6">Order</h3>
+      <!-- table -->
       <v-table>
+        <!-- table header -->
         <thead>
+          <!-- table row -->
           <tr>
+            <!-- row header -->
             <th class='text-center'>Item</th>
+            <!-- row header -->
             <th class='px-8'>Image</th>
+            <!-- row header -->
             <th>Details</th>
+            <!-- row header -->
             <th>Karatage</th>
+            <!-- row header -->
             <th>Qty</th>
+            <!-- row header -->
             <th>Price</th>
           </tr>
         </thead>
 
+        <!-- table body -->
         <tbody>
+          <!-- table body row -->
           <tr v-for='prod in products'>
+            <!-- table data -->
             <td>
               <v-checkbox
               :key='id'
               :value='prod'
               v-model='cart'
-            />
+              />
             </td>
+            <!-- table data -->
             <td>
+              <!-- table data -->
               <v-list-item :prepend-avatar='prod.image' />
             </td>
+            <!-- table data -->
             <td>{{ prod.title }}</td>
+            <!-- table data -->
             <td class='text-center'>{{ prod.subTitle }}</td>
+            <!-- table data -->
             <td class='text-end'>{{ prod.qty }}</td>
+            <!-- table data -->
             <td>{{ '$' + prod.price }}</td>
           </tr>
         </tbody>
       </v-table>
     </template>
 
+    <!-- template for form second section -->
     <template v-slot:item.2>
+      <!-- title -->
       <h3 class="text-h6">Shipping</h3>
-
+      <!-- break -->
       <br>
 
+      <!-- radio group for shipping options -->
       <v-radio-group v-model="shipping" label="Delivery Method" aria-required>
+        <!-- radio options -->
         <v-radio label="Standard Shipping - $5.99" value="5.99" />
         <v-radio label="Priority Shipping - $10.99" value="10.99" />
         <v-radio label="Express Shipping - $15.99" value="15.99" />
       </v-radio-group>
     </template>
 
+    <!-- template for third section of the form -->
     <template v-slot:item.3>
+      <!-- title -->
       <h3 class="text-h6">Confirm</h3>
-
+      <!-- break -->
       <br>
 
+      <!-- sheet to show cart items -->
       <v-sheet :border='true'>
+        <!-- creates table -->
         <v-table>
+          <!-- table header -->
           <thead>
+            <!-- header row -->
             <tr>
+              <!-- header -->
               <th class='px-9'>Item</th>
+              <!-- header -->
               <th>Details</th>
+              <!-- header -->
               <th>Caratage</th>
+              <!-- header -->
               <th class="text-end">Qty</th>
+              <!-- header -->
               <th class="text-end">Price</th>
             </tr>
           </thead>
 
+          <!-- table body -->
           <tbody>
+            <!-- table body row -->
             <tr v-for="(prod, index) in cart" :key="index">
+              <!-- table data -->
               <td>
+                <!-- table data -->
                 <v-list-item :prepend-avatar='prod.image' />
               </td>
+              <!-- table data -->
               <td>{{ prod.title }}</td>
+              <!-- table data -->
               <td>${{ prod.subTitle }}</td>
+              <!-- table data -->
               <td class="text-end"> {{ prod.qty }}</td>
+              <!-- table data -->
               <td class="text-end">{{ prod.price }}</td>
             </tr>
 
+            <!-- table row -->
             <tr>
+              <!-- table data -->
               <td>Shipping</td>
+              <!-- table data -->
               <td></td>
+              <!-- table data -->
               <td></td>
+              <!-- table data -->
               <td></td>
+              <!-- table data -->
               <td class="text-end" v-text=" '$' + shipping"></td>
             </tr>
 
+            <!-- table row -->
             <tr>
+              <!-- row header -->
               <th>Total</th>
+              <!-- header -->
               <th></th>
+              <!-- header -->
               <th></th>
+              <!-- header -->
               <th></th>
+              <!-- header -->
               <th class="text-end">
                 ${{ total }}
               </th>
